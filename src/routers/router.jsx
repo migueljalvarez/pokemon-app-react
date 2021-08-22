@@ -1,7 +1,7 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  // Redirect,
+  Redirect,
   Route,
   Switch,
 } from "react-router-dom";
@@ -9,17 +9,20 @@ import NavBar from "../components/NavBar";
 import Login from "../pages/Login";
 import Pokemons from "../pages/Pokemons";
 import { PublicRouter } from "./publicRouter";
+import { QueryParamProvider } from "use-query-params";
 
 const Routers = () => {
   return (
     <div>
       <Router>
-        <NavBar />
-        <Switch>
-          <PublicRouter exact path="/login" component={Login} />
-          <Route exact path="/pokemons" component={Pokemons} />
-          <Route exact path="/" component={Pokemons} />
-        </Switch>
+        <QueryParamProvider ReactRouterRoute={Route}>
+          <NavBar />
+          <Switch>
+            <PublicRouter exact path="/login" component={Login} />
+            <Route exact path="/pokemons" component={Pokemons} />
+            <Redirect to="/pokemons" />
+          </Switch>
+        </QueryParamProvider>
       </Router>
     </div>
   );

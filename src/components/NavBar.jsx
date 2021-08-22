@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const NavBar = () => {
   const user = useSelector((state) => state.login);
-  console.log(user);
   return (
     <div>
       <Navbar bg="danger" variant="danger">
@@ -20,13 +19,14 @@ const NavBar = () => {
             />
           </Navbar.Brand>
         </Container>
+
         <Container className="justify-content-end">
           {menu.map((item, index) => (
-            <Link className="mx-1" key={index} to={item.path}>
+            <Link className="mx-1 text-white text-decoration-none" key={index} to={item.path}>
               {item.label}
             </Link>
           ))}
-          
+
           <img
             className="rounded-circle mx-2"
             width="40"

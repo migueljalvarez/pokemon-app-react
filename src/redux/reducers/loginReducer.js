@@ -3,7 +3,7 @@ import { types } from "../types";
 const initialState = {
   isAuthenticated: false,
   imageUrl:
-    "https://c0.klipartz.com/pngpicture/24/650/gratis-png-iconos-de-computadora-servicio-avatar-usuario-casa-de-huespedes-idioma-gaulish-thumbnail.png",
+    "https://imagenpng.com/wp-content/uploads/2016/09/Pokebola-pokeball-png-2.png",
 };
 
 const loginReducer = (state = initialState, action) => {

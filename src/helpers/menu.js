@@ -7,5 +7,9 @@ const menu = [
     label: "Login",
     path: "/login",
   },
+  {
+    label: "Sign up",
+    path: "/sign-up",
+  },
 ];
 export default menu;
