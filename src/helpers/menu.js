@@ -4,6 +4,10 @@ const menu = [
     path: "/pokemons",
   },
   {
+    label: "Locations",
+    path: "/locations",
+  },
+  {
     label: "Login",
     path: "/login",
   },

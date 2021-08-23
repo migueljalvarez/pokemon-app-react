@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore, compose } from "redux";
 import { loginReducer } from "./reducers/loginReducer";
 import thunk from "redux-thunk";
+import { pokemonReducer, allPokemonsReducer } from "./reducers/pokemonReducer";
 
 const composeEnhancers =
   (typeof window !== "undefined" &&
@@ -9,6 +10,8 @@ const composeEnhancers =
 
 const reducers = combineReducers({
   login: loginReducer,
+  pokemon: pokemonReducer,
+  pokemons: allPokemonsReducer,
 });
 
 export const store = createStore(

@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Pokemons from "../pages/Pokemons";
 import { PublicRouter } from "./publicRouter";
 import { QueryParamProvider } from "use-query-params";
+import Locations from "../pages/Locations";
 
 const Routers = () => {
   return (
@@ -20,6 +21,7 @@ const Routers = () => {
           <Switch>
             <PublicRouter exact path="/login" component={Login} />
             <Route exact path="/pokemons" component={Pokemons} />
+            <Route exact path="/locations" component={Locations} />
             <Redirect to="/pokemons" />
           </Switch>
         </QueryParamProvider>

@@ -1,52 +1,47 @@
 import React, { useEffect, useState } from "react";
-import Pagination from "../components/Pagination";
-import * as pokemon from "../services/pokemons";
+import PokemonDetails from "../components/PokemonsDetails";
+import { currentPokemon, allPokemons } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Pokemons = () => {
-  const [pokemons, setPokemons] = useState([]);
-  const [previousPage, setPreviousPage] = useState(null);
-  const [nextPage, setNextPage] = useState(null);
+  const dispatch = useDispatch();
+  // const [pokemons, setPokemons] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [currentOffset, setCurrentOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageLimit, setPageLimit] = useState(10);
+  const [modalShow, setModalShow] = useState(false);
+  const { pokemons } = useSelector((state) => state);
 
-  const getData = (offset) => {
-    pokemon
-      .findAll({ offset })
-      .then((data) => {
-        const { results, next, previous } = data;
-        setTotalItems(data.count);
-        setPokemons(results);
-        setPreviousPage(previous);
-        setNextPage(next);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
   useEffect(() => {
-    getData(currentOffset);
-  }, [currentOffset]);
+    dispatch(allPokemons(currentOffset, pageLimit));
+  }, []);
 
-  const handlePreviousPage = () => {
-    setCurrentOffset(currentOffset - 10);
+  const unSelectItem = () => {
+    setModalShow(false);
   };
-
-  const handleNextPage = () => {
-    setCurrentOffset(currentOffset + 10);
+  const selectItem = (id) => {
+    dispatch(currentPokemon(id));
+    setModalShow(true);
   };
 
   return (
-    <div className="container d-flex flex-column">
-      <div className="d-flex flex-row flex-wrap justify-content-center">
-        {pokemons.map((pok, index) => {
-          const pokemonId = pok.url.split("/")[6];
-          const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+    <div className="container col-lg-9 col-md-10 col-sm-5  d-flex flex-column">
+      <h1>Pokemons</h1>
+
+      <div className="d-flex col-lg-9 col-md-10 col-sm-5 flex-row flex-wrap mx-auto justify-content-center">
+        {pokemons.results.map((pok, index) => {
           return (
-            <div key={index} className="card w-25 mx-4 my-1">
+            <div
+              key={index}
+              className="card p-2 m-1"
+              onClick={() => selectItem(pok.id)}
+            >
               <img
-                src={imageUrl}
+                src={pok.imageUrl}
                 alt={pok.name}
-                width="100"
+                width="150"
+                height="200"
                 className="m-auto"
               />
               <h4 className="m-auto text-capitalize">{pok.name}</h4>
@@ -55,12 +50,7 @@ const Pokemons = () => {
         })}
       </div>
 
-      <Pagination
-        increment={handleNextPage}
-        nextPage={nextPage}
-        decrement={handlePreviousPage}
-        previousPage={previousPage}
-      />
+      <PokemonDetails show={modalShow} onHide={() => unSelectItem()} />
     </div>
   );
 };
