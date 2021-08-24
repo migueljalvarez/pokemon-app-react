@@ -33,52 +33,52 @@ const allInitialState = {
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
     {
       name: "pokemon",
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
     },
   ],
 };
@@ -90,6 +90,7 @@ const allPokemonsReducer = (state = allInitialState, action) => {
         ...state,
         results: action.payload.results,
         count: action.payload.count,
+        currentSearchCount: action.payload.currentSearchCount
       };
     default:
       return state;

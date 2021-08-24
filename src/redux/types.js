@@ -3,5 +3,5 @@ export const types = {
   logout: "logout",
   signup: "signup",
   pokemon: "pokemon",
-  pokemons: "pokemons"
+  pokemons: "pokemons",
 };

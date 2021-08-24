@@ -30,7 +30,6 @@ export const currentPokemon = (id) => {
           type: types.pokemon,
           payload: {
             ...data,
-            imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`,
           },
         });
       })
@@ -39,23 +38,25 @@ export const currentPokemon = (id) => {
       });
   };
 };
-export const allPokemons = (offset, limit) => {
+
+export const allPokemons = (offset, limit, field, search) => {
   return (dispatch) => {
     pokemon
-      .findAll({ offset, limit })
-      .then((data) => {
-        const { results, count } = data;
-        results.map((pok) => {
-          const pokemonId = pok.url.split("/")[6];
-          const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
-          pok.id = pokemonId;
-          pok.imageUrl = imageUrl;
-        });
+      .findAll({ offset, limit, field, search })
+      .then((result) => {
+        const { results, count, currentSearchCount } = result.data;
+
+        results.map(
+          (pok) =>
+            (pok.imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pok.id}.png`)
+        );
+
         dispatch({
           type: types.pokemons,
           payload: {
             results,
-            count,
+            count: count.items.count,
+            currentSearchCount: currentSearchCount.items.count,
           },
         });
       })

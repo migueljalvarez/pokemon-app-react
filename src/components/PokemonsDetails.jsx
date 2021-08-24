@@ -2,11 +2,9 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { capitalize } from "../helpers/capitalize";
-import { findByUrl } from "../services/pokemons";
 
 const PokemonsDetails = ({ show, onHide }) => {
   const { pokemon } = useSelector((state) => state);
-
   const specie = pokemon.types.map((data) => data.type.name) || ["desconocida"];
   const habilities = pokemon.abilities.map((data) => data.ability.name) || [
     "desconocida",
@@ -28,26 +26,19 @@ const PokemonsDetails = ({ show, onHide }) => {
       <Modal.Body>
         <div className="d-flex justify-content-around">
           <div>
-            <p>Nombre: {capitalize(pokemon.name)}</p>
-            <p>Especie: {capitalize(specie.join(","))} </p>
+            <p>Especie: {capitalize(specie.join(" "))} </p>
             <p>Peso: {pokemon.weight} </p>
-            <p>Locacion: {} </p>
-            <p>Habilidades: {habilities.join(",")} </p>
+            <p>Habilidades: {habilities.join(" ")} </p>
           </div>
 
           <div className="">
-            <img
-              src={pokemon.imageUrl}
-              alt={pokemon.name}
-              width="250"
-              height="400"
-              className=""
-            />
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <p className="text-center">{capitalize(pokemon.name)}</p>
           </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
+        <Button variant="danger" onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );
