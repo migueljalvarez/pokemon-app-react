@@ -25,7 +25,7 @@ const Routers = () => {
         dispatch(login(user));
       }
     });
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <Router>
