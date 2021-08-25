@@ -13,7 +13,9 @@ footer {
   width: 100%;
 }
 
-
+#pokemon-info {
+  width: 500px;
+}
 /* mobiles */
 @media only screen and (min-width: 320px) {
   #nav-menu {
