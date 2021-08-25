@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useState } from "react";
 import PokemonDetails from "../components/PokemonsDetails";
 import { currentPokemon, allPokemons } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
