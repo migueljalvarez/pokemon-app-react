@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -11,8 +11,21 @@ import Pokemons from "../pages/Pokemons";
 import { PublicRouter } from "./publicRouter";
 import { QueryParamProvider } from "use-query-params";
 import Locations from "../pages/Locations";
+import { firebase } from "../config/firebaseConfig";
+import { login } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import Footer from "../components/Footer";
 
 const Routers = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user.uid) {
+        dispatch(login(user));
+      }
+    });
+  }, []);
   return (
     <div>
       <Router>
@@ -24,6 +37,7 @@ const Routers = () => {
             <Route exact path="/locations" component={Locations} />
             <Redirect to="/pokemons" />
           </Switch>
+          <Footer />
         </QueryParamProvider>
       </Router>
     </div>

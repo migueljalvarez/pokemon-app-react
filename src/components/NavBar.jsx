@@ -8,7 +8,7 @@ const NavBar = () => {
   const user = useSelector((state) => state.login);
   return (
     <div>
-      <Navbar bg="danger" variant="danger">
+      <Navbar bg="danger" variant="danger" className="fixed-top">
         <Container>
           <Navbar.Brand href="/">
             <img
@@ -20,7 +20,7 @@ const NavBar = () => {
           </Navbar.Brand>
         </Container>
 
-        <Container className="justify-content-end">
+        <Container id="nav-menu" className="justify-content-end">
           {menu.map((item, index) => (
             <Link className="mx-1 text-white text-decoration-none" key={index} to={item.path}>
               {item.label}

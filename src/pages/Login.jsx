@@ -4,10 +4,15 @@ import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useForm } from "../hooks/useForm";
 import { loginGoogle } from "../redux/actions";
+import logo from "../assets/svg/pokemon-23.svg";
+import constants from "../helpers/constants";
+
+const { EMAIL, PASSWORD, SIGN_IN, SIGN_IN_WITH_GOOGLE, SIGN_IN_WITH_FACEBOOK } =
+  constants;
 
 const Login = () => {
   const dispatch = useDispatch();
-  const [values, handleInputChange, reset] = useForm({
+  const [values, handleInputChange] = useForm({
     email: "",
     password: "",
   });
@@ -19,10 +24,20 @@ const Login = () => {
   };
 
   return (
-    <div className="">
+    <div
+      className="d-flex"
+      style={{
+        height: "100vh",
+        backgroundColor: "#f6f6f6",
+      }}
+    >
       <Form className="w-25 m-auto">
+        <div className="d-flex justify-content-center">
+          <img alt="pokemon" src={logo} width="130" className=" my-2" />
+        </div>
+        <h1 className="text-center my-5">{SIGN_IN}</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>{EMAIL}</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -31,8 +46,9 @@ const Login = () => {
             onChange={handleInputChange}
           />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>{PASSWORD}</Form.Label>
           <Form.Control
             type="password"
             placeholder="Password"
@@ -43,7 +59,7 @@ const Login = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit" className="my-1 w-100">
-          Iniciar Session
+          {SIGN_IN}
         </Button>
         <div className="">
           <Button
@@ -52,11 +68,11 @@ const Login = () => {
             onClick={handleloginGoogle}
           >
             <FaGoogle className="m-1" />
-            Iniciar Session con Google
+            {SIGN_IN_WITH_GOOGLE}
           </Button>
           <Button variant="primary" className="my-1 w-100">
             <FaFacebook className="m-1" />
-            Iniciar Session con Facebook
+            {SIGN_IN_WITH_FACEBOOK}
           </Button>
         </div>
       </Form>
