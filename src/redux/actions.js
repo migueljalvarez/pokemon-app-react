@@ -14,17 +14,23 @@ export const login = (user) => {
   };
 };
 
-export const logout = ()=>{
-  return (dispatch)=>{
-    firebase.auth().signOut().then(()=>{
-      dispatch({
-        type: types.logout
+export const logout = () => {
+  return (dispatch) => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({
+          type: types.logout,
+          payload: {
+          }
+        });
       })
-    }).catch((err)=>{
-      console.log(err)
-    })
-  }
-}
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 export const loginGoogle = () => {
   return (dispatch) => {

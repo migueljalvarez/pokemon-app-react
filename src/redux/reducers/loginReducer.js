@@ -1,6 +1,8 @@
 import { types } from "../types";
 
 const initialState = {
+  id: 0,
+  name: "anonymous",
   isAuthenticated: false,
   imageUrl:
     "https://imagenpng.com/wp-content/uploads/2016/09/Pokebola-pokeball-png-2.png",
@@ -17,11 +19,14 @@ const loginReducer = (state = initialState, action) => {
       };
     case types.logout:
       return {
-        ...state
-      }
+        id: initialState.id,
+        name: initialState.name,
+        imageUrl: initialState.imageUrl,
+        isAuthenticate: false,
+      };
     default:
       return state;
   }
 };
 
-export { loginReducer };
+export { loginReducer, initialState };

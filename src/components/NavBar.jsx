@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Container, Button } from "react-bootstrap";
 import logo from "../assets/svg/pokemon-23.svg";
 import menu from "../helpers/menu";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaDoorOpen } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/actions";
 
 
+
 const NavBar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.login);
 
   const handleLogout = () => {

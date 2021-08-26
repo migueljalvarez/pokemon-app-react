@@ -21,7 +21,7 @@ const Routers = () => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user?.uid) {
+      if (user) {
         dispatch(login(user));
       }
     });
