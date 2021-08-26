@@ -10,7 +10,7 @@ import Login from "../pages/Login";
 import Pokemons from "../pages/Pokemons";
 import { PublicRouter } from "./publicRouter";
 import { QueryParamProvider } from "use-query-params";
-import Locations from "../pages/Locations";
+// import Locations from "../pages/Locations";
 import { firebase } from "../config/firebaseConfig";
 import { login } from "../redux/actions";
 import { useDispatch } from "react-redux";
