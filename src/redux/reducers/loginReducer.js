@@ -15,7 +15,10 @@ const loginReducer = (state = initialState, action) => {
         imageUrl: action.payload.imageUrl,
         isAuthenticated: action.payload.isAuthenticated,
       };
-
+    case types.logout:
+      return {
+        ...state
+      }
     default:
       return state;
   }

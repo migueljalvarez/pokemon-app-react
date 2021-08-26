@@ -3,10 +3,10 @@ const menu = [
     label: "Pokemons",
     path: "/pokemons",
   },
-  {
-    label: "Locations",
-    path: "/locations",
-  },
+  // {
+  //   label: "Locations",
+  //   path: "/locations",
+  // },
   {
     label: "Login",
     path: "/login",

@@ -1,9 +1,8 @@
 import { types } from "./types";
-import { firebase, google } from "../config/firebaseConfig";
+import { firebase, google, facebook } from "../config/firebaseConfig";
 import * as pokemon from "../services/pokemons";
 
 export const login = (user) => {
-  console.log(user);
   return {
     type: types.login,
     payload: {
@@ -15,11 +14,34 @@ export const login = (user) => {
   };
 };
 
+export const logout = ()=>{
+  return (dispatch)=>{
+    firebase.auth().signOut().then(()=>{
+      dispatch({
+        type: types.logout
+      })
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+}
+
 export const loginGoogle = () => {
   return (dispatch) => {
     firebase
       .auth()
       .signInWithPopup(google)
+      .then(({ user }) => {
+        dispatch(login(user));
+      });
+  };
+};
+
+export const loginFacebook = () => {
+  return (dispatch) => {
+    firebase
+      .auth()
+      .signInWithPopup(facebook)
       .then(({ user }) => {
         dispatch(login(user));
       });

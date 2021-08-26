@@ -21,11 +21,12 @@ const Routers = () => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user.uid) {
+      if (user?.uid) {
         dispatch(login(user));
       }
     });
   }, [dispatch]);
+
   return (
     <div>
       <Router>
@@ -34,7 +35,7 @@ const Routers = () => {
           <Switch>
             <PublicRouter exact path="/login" component={Login} />
             <Route exact path="/pokemons" component={Pokemons} />
-            <Route exact path="/locations" component={Locations} />
+            {/* <Route exact path="/locations" component={Locations} /> */}
             <Redirect to="/pokemons" />
           </Switch>
           <Footer />

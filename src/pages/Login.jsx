@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useForm } from "../hooks/useForm";
-import { loginGoogle } from "../redux/actions";
+import { loginFacebook, loginGoogle } from "../redux/actions";
 import logo from "../assets/svg/pokemon-23.svg";
 import constants from "../helpers/constants";
 
@@ -21,6 +21,10 @@ const Login = () => {
 
   const handleloginGoogle = () => {
     dispatch(loginGoogle());
+  };
+
+  const handleLoginWithFacebook = () => {
+    dispatch(loginFacebook());
   };
 
   return (
@@ -58,7 +62,11 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className="my-1 w-100">
+        <Button
+          variant="primary"
+          type="submit"
+          className="my-1 w-100 btn-socials"
+        >
           {SIGN_IN}
         </Button>
         <div className="">
@@ -70,7 +78,11 @@ const Login = () => {
             <FaGoogle className="m-1" />
             {SIGN_IN_WITH_GOOGLE}
           </Button>
-          <Button variant="primary" className="my-1 w-100">
+          <Button
+            variant="primary"
+            className="my-1 w-100 btn-socials"
+            onClick={handleLoginWithFacebook}
+          >
             <FaFacebook className="m-1" />
             {SIGN_IN_WITH_FACEBOOK}
           </Button>
