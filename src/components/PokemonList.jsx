@@ -1,4 +1,5 @@
 import React from "react";
+import { removeOperator } from "../helpers/textHelper";
 const defaultImages =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png";
 
@@ -25,7 +26,9 @@ const PokemonList = ({ pokemons, selectItem }) => {
               }}
               className="m-auto"
             />
-            <h4 id="pokemon-name" className="m-auto text-capitalize">{pok.name}</h4>
+            <h4 id="pokemon-name" className="m-auto text-capitalize">
+              {removeOperator(pok.name, "-")}
+            </h4>
           </div>
         ))
       ) : (

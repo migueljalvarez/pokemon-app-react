@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button, ProgressBar } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { capitalize } from "../helpers/capitalize";
+import { removeOperator } from "../helpers/textHelper";
 
 const PokemonsDetails = ({ show, onHide }) => {
   const { pokemon } = useSelector((state) => state);
@@ -20,8 +20,11 @@ const PokemonsDetails = ({ show, onHide }) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {capitalize(pokemon.name)}
+        <Modal.Title
+          id="contained-modal-title-vcenter"
+          className="text-capitalize"
+        >
+          {removeOperator(pokemon.name, "-")}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -71,8 +74,10 @@ const PokemonsDetails = ({ show, onHide }) => {
               }}
               className="m-auto"
             />
-            <h3 className="text-center">{capitalize(pokemon.name)}</h3>
-            <h4>Especie: {capitalize(pokemon.type)} </h4>
+            <h3 className="text-center text-capitalize">
+              {removeOperator(pokemon.name, "-")}
+            </h3>
+            <h4 className="text-capitalize">Especie: {pokemon.type}</h4>
           </div>
         </div>
       </Modal.Body>

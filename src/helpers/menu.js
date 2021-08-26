@@ -7,13 +7,13 @@ const menu = [
   //   label: "Locations",
   //   path: "/locations",
   // },
-  {
-    label: "Login",
-    path: "/login",
-  },
-  {
-    label: "Sign up",
-    path: "/sign-up",
-  },
+  // {
+  //   label: "Login",
+  //   path: "/login",
+  // },
+  // {
+  //   label: "Sign up",
+  //   path: "/sign-up",
+  // },
 ];
 export default menu;

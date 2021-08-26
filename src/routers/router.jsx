@@ -5,16 +5,15 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import Login from "../pages/Login";
-import Pokemons from "../pages/Pokemons";
+import { useDispatch } from "react-redux";
 import { PublicRouter } from "./publicRouter";
-import { QueryParamProvider } from "use-query-params";
-// import Locations from "../pages/Locations";
 import { firebase } from "../config/firebaseConfig";
 import { login } from "../redux/actions";
-import { useDispatch } from "react-redux";
+
+import Login from "../pages/Login";
 import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import Pokemons from "../pages/Pokemons";
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -30,16 +29,13 @@ const Routers = () => {
   return (
     <div>
       <Router>
-        <QueryParamProvider ReactRouterRoute={Route}>
-          <NavBar />
-          <Switch>
-            <PublicRouter exact path="/login" component={Login} />
-            <Route exact path="/pokemons" component={Pokemons} />
-            {/* <Route exact path="/locations" component={Locations} /> */}
-            <Redirect to="/pokemons" />
-          </Switch>
-          <Footer />
-        </QueryParamProvider>
+        <NavBar />
+        <Switch>
+          <PublicRouter exact path="/login" component={Login} />
+          <Route exact path="/pokemons" component={Pokemons} />
+          <Redirect to="/pokemons" />
+        </Switch>
+        <Footer />
       </Router>
     </div>
   );
