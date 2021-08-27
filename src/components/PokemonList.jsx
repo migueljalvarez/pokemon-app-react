@@ -1,7 +1,7 @@
 import React from "react";
+import constants from "../helpers/constants";
 import { removeOperator } from "../helpers/textHelper";
-const defaultImages =
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png";
+const { SEARCH_NOT_FOUND, DEFAULT_POKEMON_IMAGES } = constants;
 
 const PokemonList = ({ pokemons, selectItem }) => {
   return (
@@ -22,7 +22,7 @@ const PokemonList = ({ pokemons, selectItem }) => {
               alt={pok.name}
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = defaultImages;
+                e.target.src = DEFAULT_POKEMON_IMAGES;
               }}
               className="m-auto"
             />
@@ -32,9 +32,7 @@ const PokemonList = ({ pokemons, selectItem }) => {
           </div>
         ))
       ) : (
-        <h1 className="m-auto text-capitalize">
-          No se encontro ningun pokemon
-        </h1>
+        <h1 className="m-auto text-capitalize">{SEARCH_NOT_FOUND}</h1>
       )}
     </div>
   );

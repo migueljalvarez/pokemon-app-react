@@ -5,7 +5,7 @@ import { Form, FormControl } from "react-bootstrap";
 const SearchBar = ({ filter, handleChange, searchTerm }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    if (searchTerm.length > 0) dispatch(filter(0, 10, "name", searchTerm));
+    if (searchTerm.length > 0) dispatch(filter(0, 10, "name", searchTerm.toLowerCase()));
   }, [searchTerm, dispatch, filter]);
 
   return (

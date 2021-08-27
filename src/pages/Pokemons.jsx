@@ -28,14 +28,14 @@ const Pokemons = () => {
     let offset = currentOffset + limit;
     setCurrentPage(currentPage + 1);
     setCurrentOffset(offset);
-    dispatch(allPokemons(offset, limit, "name", searchTerm));
+    dispatch(allPokemons(offset, limit, "name", searchTerm.toLowerCase()));
   };
 
   const prevStep = () => {
     let offset = currentOffset - limit;
     setCurrentPage(currentPage - 1);
     setCurrentOffset(offset);
-    dispatch(allPokemons(offset, limit, "name", searchTerm));
+    dispatch(allPokemons(offset, limit, "name", searchTerm.toLowerCase()));
   };
 
   const unSelectItem = () => {

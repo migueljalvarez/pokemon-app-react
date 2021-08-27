@@ -1,9 +1,11 @@
 import React from "react";
+import constants from "../helpers/constants";
+const { TEXT_FOOTER } = constants;
 
 const Footer = () => {
   return (
     <footer className="d-flex bg-danger justify-content-center">
-      <p className="text-white py-3 m-auto">Hecho con fines practicos</p>
+      <p className="text-white py-3 m-auto">{TEXT_FOOTER}</p>
     </footer>
   );
 };

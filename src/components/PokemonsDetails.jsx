@@ -1,12 +1,12 @@
 import React from "react";
+import constants from "../helpers/constants";
 import { Modal, Button, ProgressBar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { removeOperator } from "../helpers/textHelper";
 
+const { DEFAULT_POKEMON_IMAGES } = constants;
 const PokemonsDetails = ({ show, onHide }) => {
   const { pokemon } = useSelector((state) => state);
-  const defaultImages =
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png";
 
   const specialDefense = pokemon.stats ? pokemon.stats["special-defense"] : 0;
   const specialAttack = pokemon.stats ? pokemon.stats["special-attack"] : 0;
@@ -70,7 +70,7 @@ const PokemonsDetails = ({ show, onHide }) => {
               alt={pokemon.name}
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = defaultImages;
+                e.target.src = DEFAULT_POKEMON_IMAGES;
               }}
               className="m-auto"
             />
