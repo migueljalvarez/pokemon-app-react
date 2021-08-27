@@ -28,7 +28,7 @@ const ResposiveMenu = ({ user, items, isShow, handleLogout }) => {
 
           <div
             id="logout"
-            className="text-white bg-danger mx-1"
+            className="text-white bg-danger m-2"
             onClick={() => handleLogout()}
           >
             Logout

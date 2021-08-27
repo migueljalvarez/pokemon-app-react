@@ -45,8 +45,15 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar bg="danger" variant="danger" className="fixed-top">
-        <Container>
+      <Navbar id="nav-contarner-main" bg="danger" variant="danger" className="fixed-top">
+        <div
+          id="toggle-menu"
+          className="text-white bg-danger mx-4 w-auto"
+          onClick={handleToggleMenu}
+        >
+          {isShowMenu ? <BiX size={25} /> : <FaBars size={25} />}
+        </div>
+        <Container id="nav-contarner-brand">
           <Navbar.Brand href="/">
             <img
               alt="pokemon"
@@ -57,7 +64,7 @@ const NavBar = () => {
           </Navbar.Brand>
         </Container>
 
-        <Container className="justify-content-end">
+        <Container id="container-menu" className="justify-content-end">
           {user.isAuthenticated ? (
             <div id="nav-menu" className="">
               {defaultMenu}
@@ -95,14 +102,6 @@ const NavBar = () => {
             src={user.imageUrl}
             alt={user.name}
           />
-        </div>
-
-        <div
-          id="toggle-menu"
-          className="text-white bg-danger mx-4"
-          onClick={handleToggleMenu}
-        >
-          {isShowMenu ? <BiX size={25} /> : <FaBars size={25} />}
         </div>
       </Navbar>
       <ResposiveMenu
