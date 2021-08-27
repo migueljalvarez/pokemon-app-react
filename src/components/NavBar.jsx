@@ -24,12 +24,6 @@ const NavBar = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    return history.listen((location) => {
-      setIsShowMenu(!isShowMenu);
-    });
-  }, [history, isShowMenu]);
-
   const defaultMenu = [];
   menu.map((item, index) =>
     defaultMenu.push(
@@ -43,16 +37,29 @@ const NavBar = () => {
     )
   );
 
+  useEffect(() => {
+    return history.listen((location) => {
+      if (location) {
+        setIsShowMenu(false);
+      }
+    });
+  }, [history]);
+
   return (
     <div>
-      <Navbar id="nav-contarner-main" bg="danger" variant="danger" className="fixed-top">
-        <div
+      <Navbar
+        id="nav-contarner-main"
+        bg="danger"
+        variant="danger"
+        className="fixed-top"
+      >
+        <span
           id="toggle-menu"
-          className="text-white bg-danger mx-4 w-auto"
+          className="text-white bg-danger mx-4"
           onClick={handleToggleMenu}
         >
           {isShowMenu ? <BiX size={25} /> : <FaBars size={25} />}
-        </div>
+        </span>
         <Container id="nav-contarner-brand">
           <Navbar.Brand href="/">
             <img
