@@ -4,8 +4,7 @@ const initialState = {
   id: 0,
   name: "anonymous",
   isAuthenticated: false,
-  imageUrl:
-    "https://imagenpng.com/wp-content/uploads/2016/09/Pokebola-pokeball-png-2.png",
+  imageUrl: "https://iconape.com/wp-content/png_logo_vector/pokeball-logo.png",
 };
 
 const loginReducer = (state = initialState, action) => {
