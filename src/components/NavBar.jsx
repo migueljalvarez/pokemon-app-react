@@ -1,20 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Container } from "react-bootstrap";
 import logo from "../assets/svg/pokemon-23.svg";
 import menu from "../helpers/menu";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { BiDoorOpen } from "react-icons/bi";
+import { BiDoorOpen, BiX } from "react-icons/bi";
+import { FaBars } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/actions";
+import ResposiveMenu from "./ResposiveMenu";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login);
+  const [isShowMenu, setIsShowMenu] = useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
   };
+  const handleToggleMenu = () => {
+    setIsShowMenu(!isShowMenu);
+  };
+
+  const history = useHistory();
+
+  useEffect(() => {
+    return history.listen((location) => {
+      setIsShowMenu(!isShowMenu);
+    });
+  }, [history, isShowMenu]);
+
+  const defaultMenu = [];
+  menu.map((item, index) =>
+    defaultMenu.push(
+      <Link
+        className="text-white text-decoration-none m-2"
+        key={index}
+        to={item.path}
+      >
+        {item.label}
+      </Link>
+    )
+  );
 
   return (
     <div>
@@ -32,24 +59,19 @@ const NavBar = () => {
 
         <Container className="justify-content-end">
           {user.isAuthenticated ? (
-            <div
-              id="logout"
-              className="text-white bg-danger mx-1"
-              onClick={handleLogout}
-            >
-              <BiDoorOpen size={25} />
+            <div id="nav-menu" className="">
+              {defaultMenu}
+              <div
+                id="logout"
+                className="text-white bg-danger mx-1"
+                onClick={handleLogout}
+              >
+                <BiDoorOpen size={25} />
+              </div>
             </div>
           ) : (
             <div id="nav-menu" className="">
-              {menu.map((item, index) => (
-                <Link
-                  className="mx-1 text-white text-decoration-none"
-                  key={index}
-                  to={item.path}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {defaultMenu}
               <Link
                 className="mx-1 text-white text-decoration-none"
                 to="/sign-up"
@@ -66,13 +88,30 @@ const NavBar = () => {
           )}
         </Container>
 
-        <img
-          className="rounded-circle mx-3"
-          width="40"
-          src={user.imageUrl}
-          alt={user.name}
-        />
+        <div id="profile-image">
+          <img
+            className="rounded-circle mx-3"
+            width="40"
+            src={user.imageUrl}
+            alt={user.name}
+          />
+        </div>
+
+        <div
+          id="toggle-menu"
+          className="text-white bg-danger mx-4"
+          onClick={handleToggleMenu}
+        >
+          {isShowMenu ? <BiX size={25} /> : <FaBars size={25} />}
+        </div>
       </Navbar>
+      <ResposiveMenu
+        user={user}
+        isShow={isShowMenu}
+        items={menu}
+        handleLogout={handleLogout}
+        handleToggleMenu={handleToggleMenu}
+      />
     </div>
   );
 };

@@ -5,6 +5,7 @@ html {
 
 body {
   background-color: #f6f6f6;
+  /* height: 100vh; */
 }
 
 footer {
@@ -16,11 +17,36 @@ footer {
 #pokemon-info {
   width: 500px;
 }
+#container-login {
+  min-height: 100vh;
+  max-width: 600px;
+  margin: auto;
+}
+
 .btn-socials {
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  width: -webkit-fill-available;
 }
+
+.show {
+  display: "contents";
+}
+
+.hide {
+  display: none;
+  right: 1000px;
+}
+
+#responsive-menu {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
 /* mobiles */
 @media only screen and (min-width: 320px) {
   #nav-menu {
